@@ -1,0 +1,96 @@
+.psc-wrap { display: flex; flex-direction: column; gap: 1rem; }
+
+.psc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.psc-copies-row { display: flex; gap: 0.5rem; align-items: center; }
+
+.psc-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.psc-paper-info {
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+  font-weight: 500;
+}
+
+.psc-diagram {
+  width: 100%;
+  max-height: 180px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-subtle);
+}
+
+@media (max-width: 520px) {
+  .psc-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- v1.1 ---- */
+.psc-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0.15rem;
+}
+
+.psc-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--color-text);
+}
+.psc-check input { margin-top: 2px; accent-color: var(--color-primary); }
+.psc-check small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.psc-copies-num { width: 78px; }
+
+.psc-diagram {
+  width: 100%;
+  max-width: 190px;
+  height: auto;
+  align-self: center;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+}
+
+.psc-scale-note { text-align: center; margin-top: 0.2rem; }
+
+.psc-span { grid-column: 1 / -1; }
+.psc-perf-hint { margin-top: 0.3rem; line-height: 1.45; }
+.psc-perf-presets { display: flex; gap: 0.3rem; margin-top: 0.45rem; flex-wrap: wrap; }
+.psc-perf-presets .dc-preset { min-width: 44px; padding: 0.3rem 0.4rem; font-size: 0.78rem; }
+
+.psc-fit-tip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid hsla(262, 80%, 58%, 0.45);
+  background: hsla(262, 80%, 58%, 0.10);
+  font-size: 0.85rem;
+}
+.psc-fit-tip strong { color: var(--color-text); display: block; }
+.psc-fit-tip small {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  margin-top: 2px;
+  line-height: 1.4;
+}

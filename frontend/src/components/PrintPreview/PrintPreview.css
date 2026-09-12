@@ -1,0 +1,114 @@
+.print-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: stretch;
+  width: 100%;
+}
+
+.pp-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+.warn-banner {
+  background: hsla(38, 92%, 55%, 0.12);
+  border: 1px solid hsla(38, 92%, 55%, 0.4);
+  border-radius: var(--radius-md);
+  color: hsl(38, 92%, 72%);
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.warn-banner-text {
+  flex: 1 1 280px;
+}
+
+.warn-banner-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pp-pdf-ready {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid hsla(142, 70%, 45%, 0.45);
+  background: hsla(142, 70%, 45%, 0.08);
+}
+.pp-ready-title { color: hsl(142, 70%, 70%); font-size: 1rem; }
+.pp-ready-sub { font-size: 0.86rem; color: var(--color-text-muted); margin: 3px 0 0; }
+
+.pp-calibration {
+  padding: 1rem 1.25rem;
+}
+.pp-calibration h4 { margin: 0 0 0.5rem; font-size: 0.95rem; color: var(--color-text); }
+.pp-calibration ol { margin: 0; padding-left: 1.1rem; }
+.pp-calibration li {
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  margin-bottom: 0.35rem;
+}
+.pp-calibration strong { color: var(--color-text); }
+
+.pp-sheet-wrap { display: flex; flex-direction: column; gap: 0.6rem; width: 100%; }
+
+.pp-sheet-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pp-pager {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.pp-sheet-container {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  overflow: auto;
+}
+
+.pp-sheet-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.pp-print-note { text-align: center; }
+
+.pp-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+  padding: 2.5rem 1.5rem;
+  color: var(--color-text-muted);
+}
+
+.pp-ready-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

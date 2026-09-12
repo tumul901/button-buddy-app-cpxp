@@ -1,0 +1,165 @@
+.template-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+}
+
+.te-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  min-height: 340px;
+  padding: 2rem;
+  width: 100%;
+  color: var(--color-text-muted);
+}
+
+.te-preview-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+}
+
+/*
+ * The circle. `overflow: hidden` + `border-radius: 50%` reproduces the
+ * backend's circular mask, so what is clipped here is clipped there.
+ */
+.te-canvas-area {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  user-select: none;
+  touch-action: none;
+  background: #1b1b22;
+  box-shadow: 0 0 0 2px var(--color-border), var(--shadow-lg);
+  outline-offset: 4px;
+  cursor: default;
+}
+
+.te-canvas-area.can-pan { cursor: grab; }
+.te-canvas-area.can-pan:active { cursor: grabbing; }
+.te-canvas-area:focus-visible { outline: 3px solid var(--color-primary); }
+
+/*
+ * object-fit: cover is the exact analogue of the backend's cover-fit. The
+ * element box equals the circle box, so a percentage translate is a fraction
+ * of the badge diameter — the unit the API expects.
+ */
+.te-photo-layer,
+.te-template-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center center;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.te-photo-layer { z-index: 1; }
+.te-template-layer { z-index: 2; }
+
+/* Where the press actually cuts, when bleed is in play. */
+.te-trim-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed hsla(0, 85%, 62%, 0.85);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.te-size-caption {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+.te-size-caption strong { color: var(--color-text); }
+.te-dim { opacity: 0.7; }
+
+.te-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.te-zoom-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+.te-zoom-row .range-slider { flex: 1; }
+
+.te-zoom-val {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  min-width: 44px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.te-actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.te-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--color-border);
+  width: 100%;
+}
+
+.te-result-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.te-result-img {
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--color-success);
+  transition: opacity 0.15s ease;
+}
+
+/* A stale render is dimmed so it reads as "not what will print". */
+.te-result-img.is-stale {
+  opacity: 0.5;
+  box-shadow: 0 0 0 2px var(--color-warn, hsl(38, 92%, 55%));
+}
+
+.te-stale-note {
+  font-size: 0.85rem;
+  color: var(--color-warn, hsl(38, 92%, 65%));
+  text-align: center;
+  max-width: 42ch;
+}
+
+@media (max-width: 640px) {
+  .te-preview-wrap { padding: 1rem; }
+}

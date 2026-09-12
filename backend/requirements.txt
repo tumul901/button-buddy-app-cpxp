@@ -1,0 +1,12 @@
+# Pinned to the versions this project is verified against.
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+python-multipart==0.0.32
+sqlmodel==0.0.42
+Pillow==12.3.0
+reportlab==5.0.1
+python-dotenv==1.2.3
+aiofiles==25.1.0
+# Postgres driver. docker-compose points DATABASE_URL at postgres and without
+# this the backend container dies inside create_engine.
+psycopg[binary]==3.2.12

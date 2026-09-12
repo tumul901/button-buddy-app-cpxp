@@ -1,0 +1,491 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+/* ─────────────────────────────────────────────────────────────────
+   Design Tokens
+───────────────────────────────────────────────────────────────── */
+:root {
+  --color-primary:       hsl(262, 80%, 62%);
+  --color-primary-glow:  hsla(262, 80%, 62%, 0.35);
+  --color-accent:        hsl(340, 85%, 62%);
+  --color-accent-glow:   hsla(340, 85%, 62%, 0.3);
+  --color-success:       hsl(150, 60%, 48%);
+  --color-warning:       hsl(38, 92%, 58%);
+  --color-danger:        hsl(0, 80%, 60%);
+
+  --color-bg:            hsl(240, 14%, 7%);
+  --color-bg-alt:        hsl(240, 12%, 10%);
+  --color-surface:       hsl(240, 10%, 14%);
+  --color-surface-raised:hsl(240, 9%, 18%);
+  --color-border:        hsl(240, 8%, 24%);
+  --color-border-subtle: hsl(240, 8%, 18%);
+
+  --color-text:          hsl(240, 10%, 95%);
+  --color-text-muted:    hsl(240, 8%, 58%);
+  --color-text-faint:    hsl(240, 6%, 40%);
+
+  --radius-xs:  4px;
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --radius-full: 9999px;
+
+  --shadow-sm:   0 2px 8px hsla(240, 20%, 0%, 0.4);
+  --shadow-md:   0 4px 20px hsla(240, 20%, 0%, 0.5);
+  --shadow-lg:   0 8px 40px hsla(240, 20%, 0%, 0.6);
+  --shadow-glow-primary: 0 0 30px var(--color-primary-glow);
+  --shadow-glow-accent:  0 0 30px var(--color-accent-glow);
+
+  --transition-fast: 120ms ease;
+  --transition-med:  240ms ease;
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Reset & Base
+───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, canvas, video { max-width: 100%; display: block; }
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+a { color: var(--color-primary); text-decoration: none; }
+
+/* ─────────────────────────────────────────────────────────────────
+   Typography
+───────────────────────────────────────────────────────────────── */
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem);  font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+h4 { font-size: 1rem;   font-weight: 600; }
+p  { color: var(--color-text-muted); line-height: 1.7; }
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Layout Utilities
+───────────────────────────────────────────────────────────────── */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.section    { padding: 3rem 0; }
+.flex       { display: flex; }
+.flex-col   { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.gap-4 { gap: 2rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+/* ─────────────────────────────────────────────────────────────────
+   Card / Surface
+───────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: border-color var(--transition-med), box-shadow var(--transition-med);
+}
+.card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-primary);
+}
+.card-raised {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Buttons
+───────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  transition: all var(--transition-med);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.btn:hover::after { opacity: 0.08; }
+.btn:active::after { opacity: 0.15; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), hsl(280, 75%, 55%));
+  color: white;
+  box-shadow: 0 4px 20px var(--color-primary-glow);
+}
+.btn-primary:hover { box-shadow: 0 6px 30px var(--color-primary-glow), var(--shadow-glow-primary); transform: translateY(-1px); }
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--color-accent), hsl(320, 80%, 58%));
+  color: white;
+  box-shadow: 0 4px 20px var(--color-accent-glow);
+}
+.btn-accent:hover { box-shadow: 0 6px 30px var(--color-accent-glow); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+.btn-ghost:hover { background: var(--color-surface-raised); color: var(--color-text); border-color: var(--color-primary); }
+
+.btn-sm { padding: 0.5rem 1.1rem; font-size: 0.85rem; }
+.btn-lg { padding: 1rem 2.5rem; font-size: 1.05rem; }
+.btn:disabled { opacity: 0.45; pointer-events: none; }
+
+/* ─────────────────────────────────────────────────────────────────
+   Form Controls
+───────────────────────────────────────────────────────────────── */
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.input {
+  width: 100%;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  outline: none;
+  transition: background var(--transition-fast);
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--color-primary-glow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 16px var(--color-primary-glow);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Badge / Chip
+───────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.badge-primary { background: hsla(262, 80%, 62%, 0.18); color: var(--color-primary); border: 1px solid hsla(262, 80%, 62%, 0.35); }
+.badge-accent  { background: hsla(340, 85%, 62%, 0.15); color: var(--color-accent);  border: 1px solid hsla(340, 85%, 62%, 0.3); }
+.badge-success { background: hsla(150, 60%, 48%, 0.15); color: var(--color-success); border: 1px solid hsla(150, 60%, 48%, 0.3); }
+
+/* ─────────────────────────────────────────────────────────────────
+   Loader / Spinner
+───────────────────────────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 24px; height: 24px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Animations
+───────────────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--color-primary-glow); }
+  50%       { box-shadow: 0 0 40px var(--color-primary-glow), 0 0 60px var(--color-accent-glow); }
+}
+@keyframes dash-march {
+  to { stroke-dashoffset: -20; }
+}
+.fade-in-up { animation: fadeInUp 0.4s ease both; }
+
+/* ─────────────────────────────────────────────────────────────────
+   Navigation / Header
+───────────────────────────────────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: hsla(240, 14%, 7%, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding: 1rem 0;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-steps {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-faint);
+  transition: color var(--transition-fast);
+}
+.step-indicator.active { color: var(--color-primary); }
+.step-indicator.done   { color: var(--color-success); }
+.step-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all var(--transition-med);
+}
+.step-indicator.active .step-dot { background: var(--color-primary); border-color: var(--color-primary); color: white; }
+.step-indicator.done .step-dot   { background: var(--color-success); border-color: var(--color-success); color: white; }
+.step-line { width: 2rem; height: 2px; background: var(--color-border); border-radius: 2px; }
+
+/* ─────────────────────────────────────────────────────────────────
+   Print Styles  — only the print sheet is visible
+───────────────────────────────────────────────────────────────── */
+/*
+ * PRINT
+ *
+ * The sheet must be laid down at its true physical size. `width: 100%`
+ * resolves against the *printable area*, which excludes the printer's
+ * hardware margins (typically 4-6 mm a side) - that silently shrinks every
+ * badge to roughly 92-96% and is exactly what the calibration bar catches.
+ *
+ * The concrete `@page size` and the mm dimensions are injected at print time
+ * by PrintPreview (CSS cannot compute `size` from a custom property). What is
+ * here is the fallback and the visibility switch.
+ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /*
+   * The print surface is portalled to <body>, so hiding every other
+   * top-level node isolates it completely - no inherited transform,
+   * overflow or padding from an app ancestor can shift it on paper.
+   */
+  body > *:not(.pp-print-surface) {
+    display: none !important;
+  }
+
+  .pp-print-surface {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    overflow: hidden !important;
+    /* Overridden with the real paper size at print time. */
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .pp-print-surface img {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    /* Must NOT be max-height/object-fit constrained: the bitmap is already
+       the exact page at 300 DPI, so it maps 1:1 onto the sheet. */
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: fill !important;
+    width: 210mm;
+    height: 297mm;
+  }
+
+  /* Keep the 50 mm calibration bar and badge artwork at full fidelity. */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* On screen the print surface is out of the way entirely. */
+.pp-print-surface {
+  display: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Scrollbar
+───────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* ─────────────────────────────────────────────────────────────────
+   Error Toast
+───────────────────────────────────────────────────────────────── */
+.error-banner {
+  background: hsla(0, 80%, 60%, 0.12);
+  border: 1px solid hsla(0, 80%, 60%, 0.4);
+  border-radius: var(--radius-md);
+  color: hsl(0, 80%, 75%);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge-warn {
+  background: hsla(38, 92%, 55%, 0.16);
+  color: hsl(38, 92%, 70%);
+  border: 1px solid hsla(38, 92%, 55%, 0.4);
+}
+
+.ep-sub { font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.5; }
+
+.ep-nav { display: flex; flex-direction: column; gap: 0.5rem; }
+.ep-nav-hint { font-size: 0.78rem; color: var(--color-text-muted); text-align: center; }
+
+.home-resume {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.85rem 1.15rem;
+  border: 1px solid hsla(262, 80%, 58%, 0.4);
+  background: hsla(262, 80%, 58%, 0.08);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Responsive containment
+   Nothing may push the page wider than the viewport: a horizontal
+   scrollbar on a phone makes the whole app feel broken.
+───────────────────────────────────────────────────────────────── */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+*, *::before, *::after { min-width: 0; }
+
+/* Wide content scrolls inside its own box, never the page. */
+.pp-sheet-container,
+.bt-scroll,
+.camera-strip-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+img, svg, video, canvas { max-width: 100%; }
+
+@media (max-width: 640px) {
+  .editor-page,
+  .print-page,
+  .home-page {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .te-preview-wrap { padding: 0.75rem; }
+  .psc-grid { grid-template-columns: 1fr; }
+  .pp-actions .btn { width: 100%; }
+}

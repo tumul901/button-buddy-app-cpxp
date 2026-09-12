@@ -1,0 +1,49 @@
+# Python & Virtual Environments
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Databases & runtime uploads
+*.db
+*.db-wal
+*.db-shm
+*.db.*
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/uploads.v1bak/
+
+# Node & Frontend
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+dist-ssr/
+*.local
+.oxlintcache
+
+# Environment variables & secrets
+.env
+*.env
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Output test files
+*.pdf
+test_comp_now.png
+test_ruler.pdf

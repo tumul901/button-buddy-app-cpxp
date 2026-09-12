@@ -1,0 +1,71 @@
+.diameter-control { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.dc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.dc-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dc-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.dc-number {
+  width: 72px;
+  text-align: center;
+  padding: 0.5rem 0.4rem;
+}
+
+.dc-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.dc-hint {
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+  line-height: 1.4;
+}
+
+/* ---- v1.1: preset die sizes ---- */
+
+.dc-presets {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.15rem;
+}
+
+.dc-preset {
+  flex: 1 1 auto;
+  min-width: 52px;
+  padding: 0.4rem 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.dc-preset:hover { border-color: var(--color-primary); color: var(--color-text); }
+.dc-preset.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.dc-preset-unit { font-size: 0.68rem; font-weight: 600; opacity: 0.75; margin-left: 1px; }
+
+.dc-warn { color: hsl(38, 92%, 68%); }

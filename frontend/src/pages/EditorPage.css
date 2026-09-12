@@ -1,0 +1,31 @@
+.editor-page {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  align-items: start;
+}
+
+.ep-tray-wrap {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+@media (max-width: 780px) {
+  .editor-page { grid-template-columns: 1fr; }
+}
+
+.ep-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 90px;
+}
+
+.ep-main {
+  display: flex;
+  justify-content: center;
+}

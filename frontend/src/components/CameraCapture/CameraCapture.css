@@ -1,0 +1,206 @@
+.camera-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+/* Mode toggle (Single vs Batch) */
+.camera-mode-pills {
+  display: flex;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 4px;
+}
+
+.camera-mode-pill {
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.camera-mode-pill:hover {
+  color: var(--color-text);
+}
+
+.camera-mode-pill.active {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px var(--color-primary-glow);
+}
+
+.camera-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.camera-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Flash animation on capture */
+.camera-flash-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+  animation: camera-flash 0.35s ease-out forwards;
+}
+
+@keyframes camera-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.camera-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.camera-diam-label {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: hsla(262, 80%, 10%, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid hsla(262, 80%, 62%, 0.4);
+  color: hsl(262, 80%, 80%);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.camera-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Batch captured thumbnails strip */
+.camera-strip-wrap {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+}
+
+.camera-strip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.camera-strip-scroll {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding: 0.3rem 0;
+}
+
+.camera-strip-item {
+  position: relative;
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-primary);
+  background: #000;
+}
+
+.camera-strip-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-strip-del {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  border: none;
+  font-size: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity var(--transition);
+}
+
+.camera-strip-del:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.camera-hint {
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+  text-align: center;
+  max-width: 440px;
+}
+
+/* ---- added in v1.1 ---- */
+
+/*
+ * --cam-trim scales past any black padding the camera baked into its frames.
+ * It is 1 for a normal camera, so this is a no-op in the common case.
+ */
+.camera-video { transform: scale(var(--cam-trim, 1)); transform-origin: center center; }
+.camera-video.mirrored { transform: scale(var(--cam-trim, 1)) scaleX(-1); }
+
+.camera-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  z-index: 1;
+}
+
+.camera-overlay { z-index: 2; }
+.camera-diam-label { z-index: 3; }
+.camera-flash-overlay { z-index: 4; }
