@@ -80,13 +80,34 @@ The backend manages image composition (Pillow), SQLite storage (SQLModel), templ
    - **Windows:** `copy .env.example .env`
    - **macOS / Linux:** `cp .env.example .env`
 
-5. **Start the local backend server:**
+5. **Initialize the Database:**
+   Button Buddy uses **SQLite** by default (`DATABASE_URL=sqlite:///./buttonbuddy.db`), requiring **no separate database installation or background service**.
+
+   - **Option A (Automatic):** The database tables and initial branding templates are automatically created and seeded the first time you boot the backend server.
+   - **Option B (Manual Initialization / Re-seed):** You can explicitly create the tables and seed the built-in templates beforehand:
+     ```bash
+     python seed_templates.py
+     ```
+     This generates the decorative border templates and inserts them into `buttonbuddy.db`.
+
+6. **Start the local backend server:**
    ```bash
    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
    ```
-   > 💡 *On first startup, the server automatically initializes SQLite (`buttonbuddy.db`) and seeds the default badge templates.*
    - **API URL**: [http://localhost:8000](http://localhost:8000)
    - **Interactive API Documentation**: [http://localhost:8000/docs](http://localhost:8000/docs)
+   - **Database Health Check**: [http://localhost:8000/api/healthz](http://localhost:8000/api/healthz)
+
+---
+
+### 🗄️ Database Configuration Details
+
+| Property | Default Value | Notes |
+| :--- | :--- | :--- |
+| **Driver / Engine** | SQLite (via SQLModel / SQLAlchemy) | Zero-configuration local database |
+| **Database File** | `backend/buttonbuddy.db` | Created automatically in the backend directory |
+| **Concurrency Mode** | WAL (Write-Ahead Logging) | Enabled automatically for responsive rendering |
+| **Alternative DB** | PostgreSQL / MySQL | Update `DATABASE_URL` in `backend/.env` (e.g. `postgresql://user:pass@localhost:5432/buttonbuddy`) |
 
 ---
 
